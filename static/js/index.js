@@ -10,6 +10,7 @@ var enumerate = function(arr) {
 var processMovies = function() {
     enumerate(app.movies);
     app.movies.map(function(movie) {
+        // we need to use vue.set here so that the vairable responds to changes in the view
         Vue.set(movie, 'hoverThumb', undefined);
     });
 };
@@ -50,7 +51,6 @@ var handleThumbClick = function(movieIdx, newThumbState) {
     $.post('/moviesWithVue3/api/set_thumb/', { id: app.movies[movieIdx].id, thumb_state: setThumbTo }, function(response) {
         // after the web2py server responds, we know the thumb as been updated in the database
         // now, we just have to display the new thumb on the screen
-        console.log(setThumbTo)
         app.movies[movieIdx].thumb = setThumbTo;
     });
 };
