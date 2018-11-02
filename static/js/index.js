@@ -20,7 +20,6 @@ var onPageLoad = function() {
         function(response) {
             app.movies = response.movies;
             processMovies();
-            console.log(app.movies);
         }
     );
 };
