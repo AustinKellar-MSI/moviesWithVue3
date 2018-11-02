@@ -17,12 +17,27 @@
             <p>${ movie.title }</p>
             <p>${ movie.description }</p>
             <p>${ movie.rating }</p>
-            <div>
-                <i v-if="movie.thumb == 'u'" v-on:mouseover="hoveringThumb(movie._idx, 'u')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'u')" class="fa fa-thumbs-up" v-bind:class="{hovering: movie.hoverThumb == 'u'}"></i>   <!-- filled in thumbs up -->
-                <i v-if="movie.thumb != 'u'" v-on:mouseover="hoveringThumb(movie._idx, 'u')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'u')" class="fa fa-thumbs-o-up" v-bind:class="{hovering: movie.hoverThumb == 'u'}"></i> <!-- hollow thumbs up -->
 
-                <i v-if="movie.thumb == 'd'" v-on:mouseover="hoveringThumb(movie._idx, 'd')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'd')" class="fa fa-thumbs-down" v-bind:class="{hovering: movie.hoverThumb == 'd'}"></i> <!-- filled in thumbs down -->
-                <i v-if="movie.thumb != 'd'" v-on:mouseover="hoveringThumb(movie._idx, 'd')" v-on:mouseout="mouseLeaveThumb(movie._idx)"v-on:click="clickThumb(movie._idx, 'd')" class="fa fa-thumbs-o-down" v-bind:class="{hovering: movie.hoverThumb == 'd'}"></i><!-- hollow thumbs down-->
+            <div v-if="movie.hoverThumb == undefined">
+                    <i v-if="movie.thumb == 'u'" v-on:mouseover="hoveringThumb(movie._idx, 'u')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'u')" class="fa fa-thumbs-up"></i> 
+                    <i v-if="movie.thumb != 'u'" v-on:mouseover="hoveringThumb(movie._idx, 'u')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'u')" class="fa fa-thumbs-o-up"></i> 
+    
+                    <i v-if="movie.thumb == 'd'" v-on:mouseover="hoveringThumb(movie._idx, 'd')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'd')" class="fa fa-thumbs-down"></i> 
+                    <i v-if="movie.thumb != 'd'" v-on:mouseover="hoveringThumb(movie._idx, 'd')" v-on:mouseout="mouseLeaveThumb(movie._idx)"v-on:click="clickThumb(movie._idx, 'd')" class="fa fa-thumbs-o-down"></i>
+            </div>
+            <div v-if="movie.hoverThumb == 'u'">
+                <i v-if="movie.thumb == 'u'" v-on:mouseover="hoveringThumb(movie._idx, 'u')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'u')" class="fa fa-thumbs-up"></i>
+                <i v-if="movie.thumb != 'u'" v-on:mouseover="hoveringThumb(movie._idx, 'u')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'u')" class="hovering fa fa-thumbs-up"></i> 
+
+                <i v-if="movie.thumb == 'd'" v-on:mouseover="hoveringThumb(movie._idx, 'd')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'd')" class="fa fa-thumbs-o-down"></i> 
+                <i v-if="movie.thumb != 'd'" v-on:mouseover="hoveringThumb(movie._idx, 'd')" v-on:mouseout="mouseLeaveThumb(movie._idx)"v-on:click="clickThumb(movie._idx, 'd')" class="hovering fa fa-thumbs-o-down"></i>
+            </div>
+            <div v-if="movie.hoverThumb == 'd'">
+                    <i v-if="movie.thumb == 'u'" v-on:mouseover="hoveringThumb(movie._idx, 'u')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'u')" class="fa fa-thumbs-o-up"></i> 
+                    <i v-if="movie.thumb != 'u'" v-on:mouseover="hoveringThumb(movie._idx, 'u')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'u')" class="hovering fa fa-thumbs-o-up"></i>
+
+                    <i v-if="movie.thumb == 'd'" v-on:mouseover="hoveringThumb(movie._idx, 'd')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'd')" class="fa fa-thumbs-down"></i> 
+                    <i v-if="movie.thumb != 'd'" v-on:mouseover="hoveringThumb(movie._idx, 'd')" v-on:mouseout="mouseLeaveThumb(movie._idx)"v-on:click="clickThumb(movie._idx, 'd')" class="hovering fa fa-thumbs-down"></i>
             </div>
         </div>
     </div>
