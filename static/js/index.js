@@ -10,7 +10,7 @@ var enumerate = function(arr) {
 var processMovies = function() {
     enumerate(app.movies);
     app.movies.map(function(movie) {
-
+        Vue.set(movie, 'hoverThumb', undefined);
     });
 };
 
@@ -28,13 +28,13 @@ var insertMovie = function() {
     var newMovie = {
         title: app.newMovieTitle,
         description: app.newMovieDescription,
-        rating: app.newMovieRating,
-        thumb: null
+        rating: app.newMovieRating
     };
     $.post('/moviesWithVue3/api/insert_movie/', newMovie, function(response) { 
         // the server responded with the id number of the new movie in the database. make sure to add this to the
         // new movie object before we add it to the view
         newMovie['id'] = response.new_movie_id;
+        newMovie.thumb = null; // the new movie should start off with no thumb value
         app.movies.push(newMovie);
         processMovies(); // ned to re-index the movies now that a new one has been added to thea array
     });
@@ -55,6 +55,14 @@ var handleThumbClick = function(movieIdx, newThumbState) {
     });
 };
 
+var handleThumbMouseOver = function(movieIdx, newHoverThumbState) {
+    app.movies[movieIdx].hoverThumb = newHoverThumbState;
+};
+
+var handleThumbMouseOut = function(movieIdx) {
+    app.movies[movieIdx].hoverThumb = undefined;
+};
+
 // here, we define the Vue variable. Remember, only the fields defined here (in data and methods) are 
 // available inside the html
 var app = new Vue({
@@ -69,7 +77,9 @@ var app = new Vue({
     },
     methods: {
         submitMovie: insertMovie,
-        clickThumb: handleThumbClick
+        clickThumb: handleThumbClick,
+        hoveringThumb: handleThumbMouseOver,
+        mouseLeaveThumb: handleThumbMouseOut
     }
 });
 

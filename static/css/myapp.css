@@ -27,3 +27,7 @@
     margin: auto;
     text-align: center;
 }
+
+.hovering {
+    color: gray;
+}

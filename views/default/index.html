@@ -18,11 +18,11 @@
             <p>${ movie.description }</p>
             <p>${ movie.rating }</p>
             <div>
-                <i v-if="movie.thumb == 'u'" v-on:click="clickThumb(movie._idx, 'u')" class="fa fa-thumbs-up"></i>   <!-- filled in thumbs up -->
-                <i v-if="movie.thumb != 'u'" v-on:click="clickThumb(movie._idx, 'u')" class="fa fa-thumbs-o-up"></i> <!-- hollow thumbs up -->
+                <i v-if="movie.thumb == 'u'" v-on:mouseover="hoveringThumb(movie._idx, 'u')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'u')" class="fa fa-thumbs-up" v-bind:class="{hovering: movie.hoverThumb == 'u'}"></i>   <!-- filled in thumbs up -->
+                <i v-if="movie.thumb != 'u'" v-on:mouseover="hoveringThumb(movie._idx, 'u')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'u')" class="fa fa-thumbs-o-up" v-bind:class="{hovering: movie.hoverThumb == 'u'}"></i> <!-- hollow thumbs up -->
 
-                <i v-if="movie.thumb == 'd'" v-on:click="clickThumb(movie._idx, 'd')" class="fa fa-thumbs-down"></i> <!-- filled in thumbs down -->
-                <i v-if="movie.thumb != 'd'" v-on:click="clickThumb(movie._idx, 'd')" class="fa fa-thumbs-o-down"></i><!-- hollow thumbs down-->
+                <i v-if="movie.thumb == 'd'" v-on:mouseover="hoveringThumb(movie._idx, 'd')" v-on:mouseout="mouseLeaveThumb(movie._idx)" v-on:click="clickThumb(movie._idx, 'd')" class="fa fa-thumbs-down" v-bind:class="{hovering: movie.hoverThumb == 'd'}"></i> <!-- filled in thumbs down -->
+                <i v-if="movie.thumb != 'd'" v-on:mouseover="hoveringThumb(movie._idx, 'd')" v-on:mouseout="mouseLeaveThumb(movie._idx)"v-on:click="clickThumb(movie._idx, 'd')" class="fa fa-thumbs-o-down" v-bind:class="{hovering: movie.hoverThumb == 'd'}"></i><!-- hollow thumbs down-->
             </div>
         </div>
     </div>
