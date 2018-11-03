@@ -1,3 +1,8 @@
+// this is a global variable that we will use to tell python to submit None
+// undefined translates to None in python
+// null translates to "", so it is IMPORTANT to use undefined when you want Python to read None
+const None = undefined;
+
 // Enumerates an array.
 // this will give an _idx attribute to each movie
 // the _idx will be assigned 0, 1, 2, 3 ...
@@ -11,7 +16,7 @@ var processMovies = function() {
     enumerate(app.movies);
     app.movies.map(function(movie) {
         // we need to use vue.set here so that the vairable responds to changes in the view
-        Vue.set(movie, 'hoverThumb', undefined);
+        Vue.set(movie, 'hoverThumb', null);
     });
 };
 
@@ -43,14 +48,16 @@ var insertMovie = function() {
 var handleThumbClick = function(movieIdx, newThumbState) {
     // if we call this function, and the thumb has the same value, we want to de-select it's 
     // so we set the new thumb state to null! (this translates to None in python)
-    var setThumbTo = newThumbState;
+    var jsThumbValue = newThumbState;
+    var pythonThumbValue = newThumbState
     if(app.movies[movieIdx].thumb == newThumbState) {
-        setThumbTo = null;
+        jsThumbValue = null;
+        pythonThumbValue = None; // remember, this is a global variable that was declared at the top. None == undefined
     }
-    $.post('/moviesWithVue3/api/set_thumb/', { id: app.movies[movieIdx].id, thumb_state: setThumbTo }, function(response) {
+    $.post('/moviesWithVue3/api/set_thumb/', { id: app.movies[movieIdx].id, thumb_state: pythonThumbValue }, function(response) {
         // after the web2py server responds, we know the thumb as been updated in the database
         // now, we just have to display the new thumb on the screen
-        app.movies[movieIdx].thumb = setThumbTo;
+        app.movies[movieIdx].thumb = jsThumbValue;
     });
 };
 
@@ -59,7 +66,7 @@ var handleThumbMouseOver = function(movieIdx, newHoverThumbState) {
 };
 
 var handleThumbMouseOut = function(movieIdx) {
-    app.movies[movieIdx].hoverThumb = undefined;
+    app.movies[movieIdx].hoverThumb = null;
 };
 
 // here, we define the Vue variable. Remember, only the fields defined here (in data and methods) are 
