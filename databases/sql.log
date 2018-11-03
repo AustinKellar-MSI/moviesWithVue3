@@ -1,4 +1,4 @@
-timestamp: 2018-10-28T13:56:01.345000
+timestamp: 2018-11-03T15:44:14.590000
 CREATE TABLE "auth_user"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "first_name" CHAR(128),
@@ -10,21 +10,21 @@ CREATE TABLE "auth_user"(
     "registration_id" CHAR(512)
 );
 success!
-timestamp: 2018-10-28T13:56:01.374000
+timestamp: 2018-11-03T15:44:14.690000
 CREATE TABLE "auth_group"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "role" CHAR(512),
     "description" TEXT
 );
 success!
-timestamp: 2018-10-28T13:56:01.389000
+timestamp: 2018-11-03T15:44:14.728000
 CREATE TABLE "auth_membership"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
     "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  
 );
 success!
-timestamp: 2018-10-28T13:56:01.409000
+timestamp: 2018-11-03T15:44:14.776000
 CREATE TABLE "auth_permission"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  ,
@@ -33,7 +33,7 @@ CREATE TABLE "auth_permission"(
     "record_id" INTEGER
 );
 success!
-timestamp: 2018-10-28T13:56:01.427000
+timestamp: 2018-11-03T15:44:14.814000
 CREATE TABLE "auth_event"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "time_stamp" TIMESTAMP,
@@ -43,7 +43,7 @@ CREATE TABLE "auth_event"(
     "description" TEXT
 );
 success!
-timestamp: 2018-10-28T13:56:01.449000
+timestamp: 2018-11-03T15:44:14.856000
 CREATE TABLE "auth_cas"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
@@ -53,7 +53,7 @@ CREATE TABLE "auth_cas"(
     "renew" CHAR(1)
 );
 success!
-timestamp: 2018-10-31T19:00:37.279032
+timestamp: 2018-11-03T15:44:14.920000
 CREATE TABLE "movies"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "title" CHAR(512),
@@ -61,7 +61,7 @@ CREATE TABLE "movies"(
     "rating" CHAR(512)
 );
 success!
-timestamp: 2018-11-01T20:30:22.974586
+timestamp: 2018-11-03T15:44:14.967000
 CREATE TABLE "thumbs"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "movie_id" INTEGER REFERENCES "movies" ("id") ON DELETE CASCADE  ,
