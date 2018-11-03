@@ -1,3 +1,9 @@
+// here, we declare a global variable
+// in web2py will translate undefined (JS) to None, so we define this variable for convenience
+// it is important to note that null (JS) gets translated to "" in python, NOT None.
+// so we have to use undefined here
+const None = undefined;
+
 // Enumerates an array.
 // this will give an _idx attribute to each movie
 // the _idx will be assigned 0, 1, 2, 3 ...
@@ -39,14 +45,16 @@ var insertMovie = function() {
 var handleThumbClick = function(movieIdx, newThumbState) {
     // if we call this function, and the thumb has the same value, we want to de-select it's 
     // so we set the new thumb state to null! (this translates to None in python)
-    var setThumbTo = newThumbState;
+    var jsThumbValue = newThumbState;
+    var pythonThumbValue = newThumbState;
     if(app.movies[movieIdx].thumb == newThumbState) {
-        setThumbTo = null;
+        jsThumbValue = null;
+        pythonThumbValue = None; // remember, this is the global variable defined at the top. None == undefined
     }
-    $.post('/moviesWithVue3/api/set_thumb/', { id: app.movies[movieIdx].id, thumb_state: setThumbTo }, function(response) {
+    $.post('/moviesWithVue3/api/set_thumb/', { id: app.movies[movieIdx].id, thumb_state: pythonThumbValue }, function(response) {
         // after the web2py server responds, we know the thumb as been updated in the database
         // now, we just have to display the new thumb on the screen
-        app.movies[movieIdx].thumb = setThumbTo;
+        app.movies[movieIdx].thumb = jsThumbValue;
     });
 };
 
